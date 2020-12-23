@@ -26,7 +26,7 @@ const AxisPage = () => {
               event.preventDefault()
               const selection = event.target.elements.unit.value
               if (selection) {
-                const numFunds = parseInt(funds.replace(",", ""))
+                const numFunds = parseInt(funds.replaceAll(",", ""))
                 setBuild(applyRatio(axisRatios[selection], numFunds, axisUnits))
               }
             }}
