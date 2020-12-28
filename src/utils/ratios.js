@@ -55,16 +55,16 @@ export const alliesUnits = {
 
 const commonRatios = {
   inf: {
-    support: 13,
-    assault: 6,
+    support: 11,
+    assault: 4,
     medic: 1,
   },
   ainf: {
-    assault: 19,
+    assault: 15,
     medic: 1,
   },
   sinf: {
-    support: 19,
+    support: 15,
     medic: 1,
   },
 }
@@ -80,15 +80,15 @@ export const axisRatios = {
     a100mlr: 1,
   },
   blk: {
-    blackEagle: 19,
+    blackEagle: 9,
     brem1: 1,
   },
   t98: {
-    type98: 19,
+    type98: 9,
     brem1: 1,
   },
   tungsbrem: {
-    tunguskaM1: 19,
+    tunguskaM1: 9,
     brem1: 1,
   },
 }
