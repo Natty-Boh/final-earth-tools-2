@@ -131,7 +131,7 @@ const AlliesPage = () => {
           <p className="note">
             {" "}
             *Please note this an early version so it may be a bit buggy. Let
-            Natty_Boh know about any issues.{" "}
+            Natty_Boh know about any issues. Thanks to jorn for providing build ratios!{" "}
           </p>
         </div>
       </article>
