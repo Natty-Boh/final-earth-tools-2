@@ -51,6 +51,34 @@ export const axisUnits = {
 
 export const alliesUnits = {
   ...commonUnits,
+  humvee: {
+    cost: 250000,
+    label: "Humvee",
+  },
+  strykers: {
+    cost: 2300000,
+    label: "IAV Stryker",
+  },
+  amx30: {
+    cost: 3000000,
+    label: "AMX-30",
+  },
+  bradley: {
+    cost: 4500000,
+    label: "M3A3 Bradley",
+  },
+  bison: {
+    cost: 4000000,
+    label: "MRV Bison",
+  },
+  himars: {
+    cost: 4200000,
+    label: "M142 HIMARS",
+  },
+  abram: {
+    cost: 6200000,
+    label: "M1A2 Abram",
+  },
 }
 
 const commonRatios = {
@@ -95,6 +123,31 @@ export const axisRatios = {
 
 export const alliesRatios = {
   ...commonRatios,
+  himar: {
+    humvee: 3,
+    himars: 1,
+  },
+  stryker: {
+    humvee: 3,
+    strykers: 1,
+  },
+  abrams: {
+    abram: 9,
+    bison: 1,
+  },
+  amx: {
+    amx30: 9,
+    bison: 1,
+  },
+  bradleys: {
+    bradley: 9,
+    bison: 1,
+  },
+  abramamx: {
+    abram: 6,
+    amx30: 3,
+    bison: 1,
+  }
 }
 
 export function applyRatio(ratio, funds, units) {

@@ -3,7 +3,7 @@ import { graphql, StaticQuery } from "gatsby"
 
 import Layout from "../components/layout"
 
-import { axisRatios, axisUnits, applyRatio } from "../utils/ratios"
+import { alliesRatios, alliesUnits, applyRatio } from "../utils/ratios"
 
 import "../utils/normalize.css"
 import "../utils/css/screen.css"
@@ -27,7 +27,7 @@ const AlliesPage = () => {
               const selection = event.target.elements.unit.value
               if (selection) {
                 const numFunds = parseInt(funds.replaceAll(",", ""))
-                setBuild(applyRatio(axisRatios[selection], numFunds, axisUnits))
+                setBuild(applyRatio(alliesRatios[selection], numFunds, alliesUnits))
               }
             }}
           >
@@ -55,6 +55,54 @@ const AlliesPage = () => {
               value="sinf"
             />
             <label htmlFor="sinf">Infantry (Pure Support + medic)</label>
+            <input
+              className="allies-radio"
+              type="radio"
+              id="bradleys"
+              name="unit"
+              value="bradleys"
+            />
+            <label htmlFor="bradleys">Bradleys/Bison (Tanks Anti-Air)</label>
+            <input
+              className="allies-radio"
+              type="radio"
+              id="himar"
+              name="unit"
+              value="himar"
+            />
+            <label htmlFor="himar">Humvees/Himars (Jeeps Anti-Infantry)</label>
+            <input
+              className="allies-radio"
+              type="radio"
+              id="stryker"
+              name="unit"
+              value="stryker"
+            />
+            <label htmlFor="stryker">Humvees/Strykers (Jeeps Anti-Infantry)</label>
+            <input
+              className="allies-radio"
+              type="radio"
+              id="abrams"
+              name="unit"
+              value="abrams"
+            />
+            <label htmlFor="abrams">Abrams/Bison (Tanks Anti-tank)</label>
+            <input
+              className="allies-radio"
+              type="radio"
+              id="abramamx"
+              name="unit"
+              value="abramamx"
+            />
+            <label htmlFor="abramamx">Abram/AMX/Bison (Tanks Anti-tank)</label>
+            <input
+              className="allies-radio"
+              type="radio"
+              id="amx"
+              name="unit"
+              value="amx"
+            />
+            <label htmlFor="amx">AMX/Bison (cheaper Tanks Anti-tank)</label>
             Funds:
             <input
               type="text"
@@ -64,7 +112,7 @@ const AlliesPage = () => {
               onChange={event => setFunds(event.target.value)}
             />
           </form>
-          <button className="button axis" type="submit" form="frm1">
+          <button className="button allies" type="submit" form="frm1">
             Submit
           </button>
           {/* Break */}
@@ -84,11 +132,6 @@ const AlliesPage = () => {
             {" "}
             *Please note this an early version so it may be a bit buggy. Let
             Natty_Boh know about any issues.{" "}
-          </p>
-          <p className="note">
-            {" "}
-            **We need more allies builds! If you are a long time allies player,
-            please let Natty_Boh know the best ratios for allied builds.{" "}
           </p>
         </div>
       </article>
