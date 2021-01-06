@@ -12,7 +12,7 @@ const commonUnits = {
     label: "Medic",
   },
   at: {
-    const: 200000,
+    cost: 200000,
     label: "Anti Tank",
   }
 }
