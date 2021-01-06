@@ -18,7 +18,7 @@ const AlliesPage = () => {
         <div className="post-content-body">
           <p>
             Enter your funds below and select your build to see how many units
-            you can buy.{" "}
+            you can buy. (Please note single units builds are not listed below!){" "}
           </p>
           <form
             id="frm1"
