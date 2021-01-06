@@ -58,6 +58,14 @@ const AlliesPage = () => {
             <input
               className="allies-radio"
               type="radio"
+              id="ats"
+              name="unit"
+              value="ats"
+            />
+            <label htmlFor="ats">Infantry (Anti-Tank + support)</label>
+            <input
+              className="allies-radio"
+              type="radio"
               id="bradleys"
               name="unit"
               value="bradleys"

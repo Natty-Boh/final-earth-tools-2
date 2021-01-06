@@ -11,6 +11,10 @@ const commonUnits = {
     cost: 250000,
     label: "Medic",
   },
+  at: {
+    const: 200000,
+    label: "Anti Tank",
+  }
 }
 
 export const axisUnits = {
@@ -123,13 +127,14 @@ export const axisRatios = {
 
 export const alliesRatios = {
   ...commonRatios,
+  ats: {
+    medic: 1,
+    support: 4,
+    at: 11,
+  },
   himar: {
     humvee: 3,
     himars: 1,
-  },
-  stryker: {
-    humvee: 3,
-    strykers: 1,
   },
   abrams: {
     abram: 9,
