@@ -50,7 +50,26 @@ const BuildCalculator = ({ ratios, units, team }) => {
             name="funds"
             id="funds"
             value={funds}
-            onChange={event => setFunds(event.target.value)}
+            onChange={event => {
+              let rawFunds = event.target.value
+              rawFunds =
+                rawFunds.match(/\s*\$?\s*([0-9,.]+[kmb]?)\s*/)?.[1] ?? ""
+              rawFunds = rawFunds.replaceAll(",", "")
+              if (rawFunds.slice(-1) === "k") {
+                rawFunds = parseInt(parseFloat(rawFunds.slice(0, -1) * 1000))
+              } else if (rawFunds.slice(-1) === "m") {
+                rawFunds = parseInt(parseFloat(rawFunds.slice(0, -1) * 1000000))
+              } else if (rawFunds.slice(-1) === "b") {
+                rawFunds = parseInt(
+                  parseFloat(rawFunds.slice(0, -1) * 1000000000)
+                )
+              }
+              rawFunds = rawFunds
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+
+              setFunds(rawFunds)
+            }}
           />
         </form>
         <button className={`button ${team}`} type="submit" form="frm1">
