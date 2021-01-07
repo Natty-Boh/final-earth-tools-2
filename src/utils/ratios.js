@@ -14,7 +14,7 @@ const commonUnits = {
   at: {
     cost: 200000,
     label: "Anti Tank",
-  }
+  },
 }
 
 export const axisUnits = {
@@ -87,72 +87,114 @@ export const alliesUnits = {
 
 const commonRatios = {
   inf: {
-    support: 11,
-    assault: 4,
-    medic: 1,
+    label: "Infantry (support heavy)",
+    composition: {
+      support: 11,
+      assault: 4,
+      medic: 1,
+    },
   },
   ainf: {
-    assault: 15,
-    medic: 1,
+    label: "Infantry (pure assault + medic)",
+    composition: {
+      assault: 15,
+      medic: 1,
+    },
   },
   sinf: {
-    support: 15,
-    medic: 1,
+    label: "Infantry (pure support + medic)",
+    composition: {
+      support: 15,
+      medic: 1,
+    },
+  },
+  ats: {
+    label: "Infantry (anti-tank + support)",
+    composition: {
+      medic: 1,
+      support: 4,
+      at: 11,
+    },
   },
 }
 
 export const axisRatios = {
   ...commonRatios,
   suireb: {
-    rebel: 4,
-    suicide: 1,
+    label: "Suirebs",
+    composition: {
+      rebel: 4,
+      suicide: 1,
+    },
   },
   vod: {
-    vodnik: 3,
-    a100mlr: 1,
+    label: "Vodniks/MLR (jeeps anti-infantry)",
+    composition: {
+      vodnik: 3,
+      a100mlr: 1,
+    },
   },
   blk: {
-    blackEagle: 9,
-    brem1: 1,
+    label: "Black Eagles/Brem",
+    composition: {
+      blackEagle: 9,
+      brem1: 1,
+    },
   },
   t98: {
-    type98: 9,
-    brem1: 1,
+    label: "Type 98/Brem",
+    composition: {
+      type98: 9,
+      brem1: 1,
+    },
   },
   tungsbrem: {
-    tunguskaM1: 9,
-    brem1: 1,
+    label: "Tungs/Brem (tanks anti-air)",
+    composition: {
+      tunguskaM1: 9,
+      brem1: 1,
+    },
   },
 }
 
 export const alliesRatios = {
   ...commonRatios,
-  ats: {
-    medic: 1,
-    support: 4,
-    at: 11,
-  },
   himar: {
-    humvee: 3,
-    himars: 1,
+    label: "Humvees/Himars (jeeps anti-infantry)",
+    composition: {
+      humvee: 3,
+      himars: 1,
+    },
   },
   abrams: {
-    abram: 9,
-    bison: 1,
+    label: "Abrams/Bison (tanks anti-tank)",
+    composition: {
+      abram: 9,
+      bison: 1,
+    },
   },
   amx: {
-    amx30: 9,
-    bison: 1,
+    label: "AMX/Bison (cheaper tanks anti-tank)",
+    composition: {
+      amx30: 9,
+      bison: 1,
+    },
   },
   bradleys: {
-    bradley: 9,
-    bison: 1,
+    label: "Bradleys/Bison (tanks anti-air)",
+    composition: {
+      bradley: 9,
+      bison: 1,
+    },
   },
   abramamx: {
-    abram: 6,
-    amx30: 3,
-    bison: 1,
-  }
+    label: "Abram/AMX/Bison (tanks anti-tank)",
+    composition: {
+      abram: 6,
+      amx30: 3,
+      bison: 1,
+    },
+  },
 }
 
 export function applyRatio(ratio, funds, units) {

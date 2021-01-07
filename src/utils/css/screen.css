@@ -828,3 +828,7 @@ body {
 .unit-count {
   margin: 5px 0 5px 0;
 }
+
+.calculator-intro {
+  margin-bottom: 10px;
+}
