@@ -25,9 +25,9 @@ const BuildCalculator = ({ ratios, units, team }) => {
   return (
     <article className="post-content page-template no-image">
       <div className="post-content-body">
-        <p>
+        <p className="calculator-intro">
           Enter your funds below and select your build to see how many units you
-          can buy. (Please note single units builds are not listed below!){" "}
+          can buy. (Please note single unit builds are not listed below!){" "}
         </p>
         <form
           id="frm1"
@@ -44,34 +44,31 @@ const BuildCalculator = ({ ratios, units, team }) => {
           {Object.entries(ratios).map(([key, ratio]) => (
             <RatioSelection key={key} name={key} label={ratio.label} />
           ))}
-          Funds:
-          <input
-            type="text"
-            name="funds"
-            id="funds"
-            value={funds}
-            onChange={event => {
-              let rawFunds = event.target.value
-              rawFunds =
-                rawFunds.match(/\s*\$?\s*([0-9,.]+[kmb]?)\s*/)?.[1] ?? ""
-              rawFunds = rawFunds.replaceAll(",", "")
-              if (rawFunds.slice(-1) === "k") {
-                rawFunds = parseInt(parseFloat(rawFunds.slice(0, -1) * 1000))
-              } else if (rawFunds.slice(-1) === "m") {
-                rawFunds = parseInt(parseFloat(rawFunds.slice(0, -1) * 1000000))
-              } else if (rawFunds.slice(-1) === "b") {
-                rawFunds = parseInt(
-                  parseFloat(rawFunds.slice(0, -1) * 1000000000)
-                )
-              }
-              rawFunds = rawFunds
-                .toString()
-                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-
-              setFunds(rawFunds)
-            }}
-          />
         </form>
+        <label htmlFor="funds">Funds:</label>
+        <input
+          type="text"
+          name="funds"
+          id="funds"
+          value={funds}
+          onChange={event => {
+            let rawFunds = event.target.value
+            rawFunds = rawFunds.match(/\s*\$?\s*([0-9,.]+[kmb]?)\s*/)?.[1] ?? ""
+            rawFunds = rawFunds.replaceAll(",", "")
+            if (rawFunds.slice(-1) === "k") {
+              rawFunds = parseInt(parseFloat(rawFunds.slice(0, -1) * 1000))
+            } else if (rawFunds.slice(-1) === "m") {
+              rawFunds = parseInt(parseFloat(rawFunds.slice(0, -1) * 1000000))
+            } else if (rawFunds.slice(-1) === "b") {
+              rawFunds = parseInt(
+                parseFloat(rawFunds.slice(0, -1) * 1000000000)
+              )
+            }
+            rawFunds = rawFunds.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+
+            setFunds(rawFunds)
+          }}
+        />
         <button className={`button ${team}`} type="submit" form="frm1">
           Submit
         </button>

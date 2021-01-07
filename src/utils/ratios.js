@@ -87,7 +87,7 @@ export const alliesUnits = {
 
 const commonRatios = {
   inf: {
-    label: "Infantry (Support heavy)",
+    label: "Infantry (support heavy)",
     composition: {
       support: 11,
       assault: 4,
@@ -95,21 +95,21 @@ const commonRatios = {
     },
   },
   ainf: {
-    label: "Infantry (Pure Assault + Medic)",
+    label: "Infantry (pure assault + medic)",
     composition: {
       assault: 15,
       medic: 1,
     },
   },
   sinf: {
-    label: "Infantry (Pure Support + medic)",
+    label: "Infantry (pure support + medic)",
     composition: {
       support: 15,
       medic: 1,
     },
   },
   ats: {
-    label: "Infantry (Anti-Tank + support)",
+    label: "Infantry (anti-tank + support)",
     composition: {
       medic: 1,
       support: 4,
@@ -128,7 +128,7 @@ export const axisRatios = {
     },
   },
   vod: {
-    label: "Vodniks/MLR (Jeeps Anti-Infantry)",
+    label: "Vodniks/MLR (jeeps anti-infantry)",
     composition: {
       vodnik: 3,
       a100mlr: 1,
@@ -149,7 +149,7 @@ export const axisRatios = {
     },
   },
   tungsbrem: {
-    label: "Tungs/Brem (Tanks Anti-Air)",
+    label: "Tungs/Brem (tanks anti-air)",
     composition: {
       tunguskaM1: 9,
       brem1: 1,
@@ -160,35 +160,35 @@ export const axisRatios = {
 export const alliesRatios = {
   ...commonRatios,
   himar: {
-    label: "Humvees/Himars (Jeeps Anti-Infantry)",
+    label: "Humvees/Himars (jeeps anti-infantry)",
     composition: {
       humvee: 3,
       himars: 1,
     },
   },
   abrams: {
-    label: "Abrams/Bison (Tanks Anti-tank)",
+    label: "Abrams/Bison (tanks anti-tank)",
     composition: {
       abram: 9,
       bison: 1,
     },
   },
   amx: {
-    label: "AMX/Bison (cheaper Tanks Anti-tank)",
+    label: "AMX/Bison (cheaper tanks anti-tank)",
     composition: {
       amx30: 9,
       bison: 1,
     },
   },
   bradleys: {
-    label: "Bradleys/Bison (Tanks Anti-Air)",
+    label: "Bradleys/Bison (tanks anti-air)",
     composition: {
       bradley: 9,
       bison: 1,
     },
   },
   abramamx: {
-    label: "Abram/AMX/Bison (Tanks Anti-tank)",
+    label: "Abram/AMX/Bison (tanks anti-tank)",
     composition: {
       abram: 6,
       amx30: 3,
