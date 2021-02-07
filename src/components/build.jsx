@@ -6,6 +6,7 @@ const BuildCalculator = ({ ratios, units, team }) => {
   const [funds, setFunds] = React.useState("")
   const [selection, setSelection] = React.useState(undefined)
   const [build, setBuild] = React.useState()
+  const [key, setKey] = React.useState("")
 
   const RatioSelection = ({ name, label }) => (
     <>
@@ -21,6 +22,19 @@ const BuildCalculator = ({ ratios, units, team }) => {
       <label htmlFor={name}>{label}</label>
     </>
   )
+
+
+
+async function fetchTroops(key) {
+  const unitInfo = await fetch(`https://www.finalearth.com/api/allUnits?key=${key}`);
+
+    const units = await fetch(`https://www.finalearth.com/api/units?key=${key}`);
+
+    const unitsData = await units.json()
+    console.log(unitsData)
+}
+
+
 
   return (
     <article className="post-content page-template no-image">
@@ -69,7 +83,18 @@ const BuildCalculator = ({ ratios, units, team }) => {
             setFunds(rawFunds)
           }}
         />
-        <button className={`button ${team}`} type="submit" form="frm1">
+        <label htmlFor="key">API key:</label>
+        <input
+        type="text"
+        name="key"
+        id="key"
+        value={key}
+        onChange={event => {
+          let rawKey = event.target.value
+          setKey(rawKey)
+        }}
+        />
+        <button  onClick={() => fetchTroops(key)} className={`button ${team}`} type="submit" form="frm1">
           Submit
         </button>
         {/* Break */}
