@@ -832,3 +832,7 @@ body {
 .calculator-intro {
   margin-bottom: 10px;
 }
+
+.hint {
+  color: var(--color-base)
+}

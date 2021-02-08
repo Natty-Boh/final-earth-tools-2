@@ -20,7 +20,6 @@ const NetworthPage = () => {
         const unitsJson= await unitsResponse.json()
         const allUnits = await allUnitsResponse.json()
         const userJson = await userResponse.json()
-        console.log(unitsJson.data)
 
         if (!unitsJson.data.code == 1) {
             var unitNet = unitsJson.data.map(unit => allUnits.data[unit.id-1].cost * unit.quantity).reduce((a, b) => a + b, 0)
