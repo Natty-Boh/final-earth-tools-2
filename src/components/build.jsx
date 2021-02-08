@@ -40,7 +40,7 @@ const BuildCalculator = ({ ratios, units, team }) => {
       const userJson = await userResponse.json()
 
       var unitNet = unitsJson.data
-        .map(unit => allUnits.data[unit.id - 1].cost * unit.quantity)
+        .map(unit => search(unit.id, allUnits.data).cost * unit.quantity)
         .reduce((a, b) => a + b, 0)
 
       var cash = userJson.data.funds
@@ -50,6 +50,13 @@ const BuildCalculator = ({ ratios, units, team }) => {
 
     setBuild(applyRatio(ratios[selection].composition, numFunds, units))
   }
+
+  function search(id, arr){
+    for (var i=0; i < arr.length; i++) {
+        if (arr[i].id === id) {
+            return arr[i];
+        }
+    }
 
   return (
     <article className="post-content page-template no-image">
