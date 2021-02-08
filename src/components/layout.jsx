@@ -18,6 +18,9 @@ const Layout = props => {
               <li className="nav-elements">
                 <Link to={`/allies`}>Allies Calculator</Link>
               </li>
+              <li className="nav-elements">
+                <Link to={`/networth`}>Networth Calculator</Link>
+              </li>
             </ul>
           </nav>
           <div className="site-head-center">

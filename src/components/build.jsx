@@ -6,6 +6,7 @@ const BuildCalculator = ({ ratios, units, team }) => {
   const [funds, setFunds] = React.useState("")
   const [selection, setSelection] = React.useState(undefined)
   const [build, setBuild] = React.useState()
+  const [key, setKey] = React.useState("")
 
   const RatioSelection = ({ name, label }) => (
     <>
@@ -22,12 +23,41 @@ const BuildCalculator = ({ ratios, units, team }) => {
     </>
   )
 
+  async function setBuildAndFetchTroops(selection, numFunds) {
+    if (key != "") {
+      const allUnitsResponse = await fetch(
+        `https://www.finalearth.com/api/allUnits?key=${key}`
+      )
+      const unitsResponse = await fetch(
+        `https://www.finalearth.com/api/units?key=${key}`
+      )
+      const userResponse = await fetch(
+        `https://www.finalearth.com/api/user?key=${key}`
+      )
+
+      const unitsJson = await unitsResponse.json()
+      const allUnits = await allUnitsResponse.json()
+      const userJson = await userResponse.json()
+
+      var unitNet = unitsJson.data
+        .map(unit => allUnits.data[unit.id - 1].cost * unit.quantity)
+        .reduce((a, b) => a + b, 0)
+
+      var cash = userJson.data.funds
+
+      numFunds = cash + unitNet
+    }
+
+    setBuild(applyRatio(ratios[selection].composition, numFunds, units))
+  }
+
   return (
     <article className="post-content page-template no-image">
       <div className="post-content-body">
         <p className="calculator-intro">
-          Enter your funds below and select your build to see how many units you
-          can buy. (Please note single unit builds are not listed below!){" "}
+          Enter your funds or api key below and select your build to see how
+          many units you can buy. (Please note single unit builds are not listed
+          below!){" "}
         </p>
         <form
           id="frm1"
@@ -35,9 +65,8 @@ const BuildCalculator = ({ ratios, units, team }) => {
             event.preventDefault()
             if (selection) {
               const numFunds = parseInt(funds.replaceAll(",", ""))
-              setBuild(
-                applyRatio(ratios[selection].composition, numFunds, units)
-              )
+
+              setBuildAndFetchTroops(selection, numFunds)
             }
           }}
         >
@@ -67,6 +96,22 @@ const BuildCalculator = ({ ratios, units, team }) => {
             rawFunds = rawFunds.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 
             setFunds(rawFunds)
+          }}
+        />
+        <p>or</p>
+        <label htmlFor="key">
+          <div className="hint">
+            [BETA] Total units you can have with cash on hand + current troops
+          </div>{" "}
+          <div> API key:</div>
+        </label>
+        <input
+          type="text"
+          name="key"
+          id="key"
+          value={key}
+          onChange={event => {
+            setKey(event.target.value)
           }}
         />
         <button className={`button ${team}`} type="submit" form="frm1">
