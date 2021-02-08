@@ -27,7 +27,7 @@ const NetworthPage = () => {
 
     if (!unitsJson.data.code == 1) {
       var unitNet = unitsJson.data
-        .map(unit => allUnits.data[unit.id - 1].cost * unit.quantity)
+        .map(unit => search(unit.id,allUnits.data).cost * unit.quantity)
         .reduce((a, b) => a + b, 0)
 
       var funds = userJson.data.funds
@@ -39,6 +39,14 @@ const NetworthPage = () => {
       )
     }
   }
+
+  function search(id, arr){
+    for (var i=0; i < arr.length; i++) {
+        if (arr[i].id === id) {
+            return arr[i];
+        }
+    }
+}
 
   function numberWithCommas(x) {
     if (x != "") {
