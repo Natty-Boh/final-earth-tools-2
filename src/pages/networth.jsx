@@ -27,9 +27,13 @@ const NetworthPage = () => {
       const allUnits = await allUnitsResponse.json()
       const userJson = await userResponse.json()
 
-      if (!unitsJson.data.code === 1) {
+      if (!unitsJson.error) {
         var unitNet = unitsJson.data
-          .map(unit => search(unit.id, allUnits.data).cost * unit.quantity)
+          .map(
+            unit =>
+              allUnits.data.find(elem => unit.id === elem.id).cost *
+              unit.quantity
+          )
           .reduce((a, b) => a + b, 0)
 
         var funds = userJson.data.funds
@@ -44,14 +48,6 @@ const NetworthPage = () => {
       setNetworth(
         `Something went wrong! Encountered an error when trying to contact the API: ${error.message}`
       )
-    }
-  }
-
-  function search(id, arr) {
-    for (var i = 0; i < arr.length; i++) {
-      if (arr[i].id === id) {
-        return arr[i]
-      }
     }
   }
 
