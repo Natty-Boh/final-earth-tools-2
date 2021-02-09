@@ -25,7 +25,7 @@ const BuildCalculator = ({ ratios, units, team }) => {
   )
 
   async function setBuildAndFetchTroops(selection, numFunds) {
-    if (key != "") {
+    if (key !== "") {
       const allUnitsResponse = await fetch(
         `https://www.finalearth.com/api/allUnits?key=${key}`
       )

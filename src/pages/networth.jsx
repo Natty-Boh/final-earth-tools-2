@@ -27,7 +27,7 @@ const NetworthPage = () => {
       const allUnits = await allUnitsResponse.json()
       const userJson = await userResponse.json()
 
-      if (!unitsJson.data.code == 1) {
+      if (!unitsJson.data.code === 1) {
         var unitNet = unitsJson.data
           .map(unit => search(unit.id, allUnits.data).cost * unit.quantity)
           .reduce((a, b) => a + b, 0)
@@ -56,7 +56,7 @@ const NetworthPage = () => {
   }
 
   function numberWithCommas(x) {
-    if (x != "") {
+    if (x !== "") {
       return " Networth: $" + x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     }
     return ""
@@ -77,7 +77,7 @@ const NetworthPage = () => {
             id="frm1"
             onSubmit={event => {
               event.preventDefault()
-              if (key != "") {
+              if (key !== "") {
                 setFetching(true)
                 calculateNetworth().finally(() => setFetching(false))
               }
