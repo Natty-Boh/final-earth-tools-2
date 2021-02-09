@@ -28,7 +28,7 @@ const NetworthPage = () => {
       const userJson = await userResponse.json()
 
       if (!unitsJson.error) {
-        var unitNet = unitsJson.data
+        const unitNet = unitsJson.data
           .map(
             unit =>
               allUnits.data.find(elem => unit.id === elem.id).cost *
@@ -36,8 +36,8 @@ const NetworthPage = () => {
           )
           .reduce((a, b) => a + b, 0)
 
-        var funds = userJson.data.funds
-        var reimb = userJson.data.reimbursement.amount
+        const funds = userJson.data.funds
+        const reimb = userJson.data.reimbursement.amount
         setNetworth(numberWithCommas(unitNet + funds + reimb))
       } else {
         setNetworth(

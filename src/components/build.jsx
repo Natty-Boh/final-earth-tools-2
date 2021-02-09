@@ -40,14 +40,14 @@ const BuildCalculator = ({ ratios, units, team }) => {
       const allUnits = await allUnitsResponse.json()
       const userJson = await userResponse.json()
 
-      var unitNet = unitsJson.data
+      const unitNet = unitsJson.data
         .map(
           unit =>
             allUnits.data.find(elem => elem.id === unit.id).cost * unit.quantity
         )
         .reduce((a, b) => a + b, 0)
 
-      var cash = userJson.data.funds
+      const cash = userJson.data.funds
 
       numFunds = cash + unitNet
     }
