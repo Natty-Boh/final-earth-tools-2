@@ -7,6 +7,7 @@ const BuildCalculator = ({ ratios, units, team }) => {
   const [selection, setSelection] = React.useState(undefined)
   const [build, setBuild] = React.useState()
   const [key, setKey] = React.useState("")
+  const [fetching, setFetching] = React.useState(false)
 
   const RatioSelection = ({ name, label }) => (
     <>
@@ -51,12 +52,13 @@ const BuildCalculator = ({ ratios, units, team }) => {
     setBuild(applyRatio(ratios[selection].composition, numFunds, units))
   }
 
-  function search(id, arr){
-    for (var i=0; i < arr.length; i++) {
-        if (arr[i].id === id) {
-            return arr[i];
-        }
+  function search(id, arr) {
+    for (var i = 0; i < arr.length; i++) {
+      if (arr[i].id === id) {
+        return arr[i]
+      }
     }
+  }
 
   return (
     <article className="post-content page-template no-image">
@@ -73,12 +75,20 @@ const BuildCalculator = ({ ratios, units, team }) => {
             if (selection) {
               const numFunds = parseInt(funds.replaceAll(",", ""))
 
-              setBuildAndFetchTroops(selection, numFunds)
+              setFetching(true)
+              setBuildAndFetchTroops(selection, numFunds).finally(() =>
+                setFetching(false)
+              )
             }
           }}
         >
           {Object.entries(ratios).map(([key, ratio]) => (
-            <RatioSelection key={key} name={key} label={ratio.label} />
+            <RatioSelection
+              key={key}
+              name={key}
+              label={ratio.label}
+              disabled={fetching}
+            />
           ))}
         </form>
         <label htmlFor="funds">Funds:</label>
@@ -87,6 +97,7 @@ const BuildCalculator = ({ ratios, units, team }) => {
           name="funds"
           id="funds"
           value={funds}
+          disabled={fetching}
           onChange={event => {
             let rawFunds = event.target.value
             rawFunds = rawFunds.match(/\s*\$?\s*([0-9,.]+[kmb]?)\s*/)?.[1] ?? ""
@@ -117,11 +128,17 @@ const BuildCalculator = ({ ratios, units, team }) => {
           name="key"
           id="key"
           value={key}
+          disabled={fetching}
           onChange={event => {
             setKey(event.target.value)
           }}
         />
-        <button className={`button ${team}`} type="submit" form="frm1">
+        <button
+          className={`button ${team}`}
+          type="submit"
+          form="frm1"
+          diabled={fetching}
+        >
           Submit
         </button>
         {/* Break */}
