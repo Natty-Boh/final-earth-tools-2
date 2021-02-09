@@ -9,47 +9,50 @@ import "../utils/css/screen.css"
 const NetworthPage = () => {
   const [key, setKey] = React.useState("")
   const [networth, setNetworth] = React.useState("")
+  const [fetching, setFetching] = React.useState(false)
 
   async function calculateNetworth() {
-    const allUnitsResponse = await fetch(
-      `https://www.finalearth.com/api/allUnits?key=${key}`
-    )
-    const unitsResponse = await fetch(
-      `https://www.finalearth.com/api/units?key=${key}`
-    )
-    const userResponse = await fetch(
-      `https://www.finalearth.com/api/user?key=${key}`
-    )
+    try {
+      const allUnitsResponse = await fetch(
+        `https://www.finalearth.com/api/allUnits?key=${key}`
+      )
+      const unitsResponse = await fetch(
+        `https://www.finalearth.com/api/units?key=${key}`
+      )
+      const userResponse = await fetch(
+        `https://www.finalearth.com/api/user?key=${key}`
+      )
 
-    const unitsJson = await unitsResponse.json()
-    const allUnits = await allUnitsResponse.json()
-    const userJson = await userResponse.json()
+      const unitsJson = await unitsResponse.json()
+      const allUnits = await allUnitsResponse.json()
+      const userJson = await userResponse.json()
 
-    if (!unitsJson.data.code == 1) {
-      var unitNet = unitsJson.data
-        .map(unit => search(unit.id,allUnits.data).cost * unit.quantity)
-        .reduce((a, b) => a + b, 0)
+      if (!unitsJson.error) {
+        const unitNet = unitsJson.data
+          .map(
+            unit =>
+              allUnits.data.find(elem => unit.id === elem.id).cost *
+              unit.quantity
+          )
+          .reduce((a, b) => a + b, 0)
 
-      var funds = userJson.data.funds
-      var reimb = userJson.data.reimbursement.amount
-      setNetworth(numberWithCommas(unitNet + funds + reimb))
-    } else {
+        const funds = userJson.data.funds
+        const reimb = userJson.data.reimbursement.amount
+        setNetworth(numberWithCommas(unitNet + funds + reimb))
+      } else {
+        setNetworth(
+          `Something went wrong! The API returned an error: ${unitsJson.reason}`
+        )
+      }
+    } catch (error) {
       setNetworth(
-        "Something went Wrong! You may have used an invalid API key or the Final Earth API failed."
+        `Something went wrong! Encountered an error when trying to contact the API: ${error.message}`
       )
     }
   }
 
-  function search(id, arr){
-    for (var i=0; i < arr.length; i++) {
-        if (arr[i].id === id) {
-            return arr[i];
-        }
-    }
-}
-
   function numberWithCommas(x) {
-    if (x != "") {
+    if (x !== "") {
       return " Networth: $" + x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     }
     return ""
@@ -70,22 +73,30 @@ const NetworthPage = () => {
             id="frm1"
             onSubmit={event => {
               event.preventDefault()
-              if (key != "") {
-                calculateNetworth()
+              if (key !== "") {
+                setFetching(true)
+                calculateNetworth().finally(() => setFetching(false))
               }
             }}
-          ></form>
-          <label htmlFor="key">API key:</label>
-          <input
-            type="text"
-            name="key"
-            id="key"
-            value={key}
-            onChange={event => {
-              setKey(event.target.value)
-            }}
-          />
-          <button className={`button allies`} type="submit" form="frm1">
+          >
+            <label htmlFor="key">API key:</label>
+            <input
+              type="text"
+              name="key"
+              id="key"
+              value={key}
+              disabled={fetching}
+              onChange={event => {
+                setKey(event.target.value)
+              }}
+            />
+          </form>
+          <button
+            className={`button allies`}
+            type="submit"
+            disabled={fetching}
+            form="frm1"
+          >
             Submit
           </button>
 
