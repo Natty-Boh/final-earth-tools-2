@@ -203,7 +203,7 @@ export function applyRatio(ratio, funds, units) {
     0
   )
 
-  var tmp = Object.fromEntries(
+  return Object.fromEntries(
     Object.entries(ratio).map(([unit, amount]) => [
       unit,
       {
@@ -212,6 +212,4 @@ export function applyRatio(ratio, funds, units) {
       },
     ])
   )
-  console.log(tmp)
-  return tmp;
 }
