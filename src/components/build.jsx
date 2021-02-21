@@ -26,37 +26,52 @@ const BuildCalculator = ({ ratios, units, team }) => {
 
   async function setBuildAndFetchTroops(selection, numFunds) {
     if (key !== "") {
-      const allUnitsResponse = await fetch(
-        `https://www.finalearth.com/api/allUnits?key=${key}`
-      )
-      const unitsResponse = await fetch(
-        `https://www.finalearth.com/api/units?key=${key}`
-      )
-      const userResponse = await fetch(
-        `https://www.finalearth.com/api/user?key=${key}`
-      )
-
-      const unitsJson = await unitsResponse.json()
-      const allUnits = await allUnitsResponse.json()
-      const userJson = await userResponse.json()
-
-      const unitNet = unitsJson.data
-        .map(
-          unit =>
-            allUnits.data.find(elem => elem.id === unit.id).cost * unit.quantity
+      try {
+        const allUnitsResponse = await fetch(
+          `https://www.finalearth.com/api/allUnits?key=${key}`
         )
-        .reduce((a, b) => a + b, 0)
+        const unitsResponse = await fetch(
+          `https://www.finalearth.com/api/units?key=${key}`
+        )
+        const userResponse = await fetch(
+          `https://www.finalearth.com/api/user?key=${key}`
+        )
 
-      const cash = userJson.data.funds
+        const unitsJson = await unitsResponse.json()
+        const allUnits = await allUnitsResponse.json()
+        const userJson = await userResponse.json()
 
-      numFunds = cash + unitNet
+        if (!unitsJson.error) {
+          const unitNet = unitsJson.data
+            .map(
+              unit =>
+                allUnits.data.find(elem => elem.id === unit.id).cost * unit.quantity
+            )
+            .reduce((a, b) => a + b, 0)
+
+          const cash = userJson.data.funds
+
+          numFunds = cash + unitNet
+          setBuild(applyRatio(ratios[selection].composition, numFunds, units))
+        }
+        else {
+          setBuild(
+            {error: `Something went wrong! The API returned an error: ${unitsJson.reason}`}
+          )
+        }
+      } catch (error) {
+        setBuild(
+          {error:`Something went wrong! Encountered an error when trying to contact the API: ${error.message}`}
+        )
+      }
+    } else {
+      setBuild(applyRatio(ratios[selection].composition, numFunds, units))
     }
 
-    setBuild(applyRatio(ratios[selection].composition, numFunds, units))
   }
 
   return (
-    <article className="post-content page-template no-image">
+    <article className="page-content page-template no-image">
       <div className="post-content-body">
         <p className="calculator-intro">
           Enter your funds or api key below and select your build to see how
@@ -74,6 +89,8 @@ const BuildCalculator = ({ ratios, units, team }) => {
               setBuildAndFetchTroops(selection, numFunds).finally(() =>
                 setFetching(false)
               )
+            } else {
+              setBuild({error: "Error: no build selected"})
             }
           }}
         >
@@ -132,18 +149,22 @@ const BuildCalculator = ({ ratios, units, team }) => {
           className={`button ${team}`}
           type="submit"
           form="frm1"
-          diabled={fetching}
+          disabled={fetching}
         >
           Submit
         </button>
         {/* Break */}
         {build && (
           <div className="unit-container">
-            {Object.values(build).map(({ quantity, unit: { label } }) => (
-              <p key={label} className="unit-count">{`${quantity} ${label}${
-                quantity === 1 ? "" : "s"
-              }`}</p>
-            ))}
+            {build.error ? (
+              <p className="unit-count">{build.error}</p>
+            ) : (
+              Object.values(build).map(({ quantity, unit: { label } }) => (
+                <p key={label} className="unit-count">{`${quantity} ${label}${
+                  quantity === 1 ? "" : "s"
+                }`}</p>
+              ))
+            )}
           </div>
         )}
         <p id="demo2"></p>

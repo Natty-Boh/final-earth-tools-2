@@ -64,7 +64,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 13vw 0;
+  padding: 4vw 0;
   max-width: 70%;
   margin: auto;
   text-align: center;
@@ -98,6 +98,12 @@ body {
 .page-head-title {
   margin: 0;
   font-size: 4.2rem;
+  color: var(--color-base);
+}
+
+.page-head-sub-title {
+  margin: 0;
+  font-size: 3.2rem;
   color: var(--color-base);
 }
 @media (max-width: 500px) {
@@ -554,7 +560,13 @@ body {
 .post-content {
   max-width: 720px;
   margin: 0 auto;
-  padding: 6vw 0;
+  padding-bottom: 6vw;
+}
+
+.page-content {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 4vw 0;
 }
 
 .post-content-header {
@@ -819,6 +831,7 @@ body {
 
 .note {
   font-size: 1.2rem;
+  padding-top: 1vw;
 }
 
 .unit-container {

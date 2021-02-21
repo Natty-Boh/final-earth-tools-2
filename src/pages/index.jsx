@@ -9,7 +9,7 @@ const Index = () => {
   return (
     <Layout title="Final Earth Tools">
       <header className="page-head">
-        <h2 className="page-head-title">Final Earth Build Calculators</h2>
+        <h2 className="page-head-title">Build Calculators</h2>
         <br />
         <p>Select your team:</p>
         <ul className="actions post-content">
@@ -24,6 +24,11 @@ const Index = () => {
             </a>
           </li>
         </ul>
+        <h2 className="page-head-sub-title">Other Calculators</h2>
+        <br />
+          <a href="/networth" className="button neutral">
+            Networth 
+          </a>
       </header>
     </Layout>
   )

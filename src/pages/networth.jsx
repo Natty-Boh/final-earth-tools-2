@@ -60,7 +60,7 @@ const NetworthPage = () => {
 
   return (
     <Layout title="Networth Calculator">
-      <article className="post-content page-template no-image">
+      <article className="page-content page-template no-image">
         <div className="post-content-body">
           <p className="calculator-intro">
             Enter your FE api key to see your total networth (units value + cash
@@ -74,6 +74,7 @@ const NetworthPage = () => {
             onSubmit={event => {
               event.preventDefault()
               if (key !== "") {
+                setNetworth("Waiting for api...")
                 setFetching(true)
                 calculateNetworth().finally(() => setFetching(false))
               }
@@ -92,7 +93,7 @@ const NetworthPage = () => {
             />
           </form>
           <button
-            className={`button allies`}
+            className={`button neutral`}
             type="submit"
             disabled={fetching}
             form="frm1"
@@ -102,6 +103,11 @@ const NetworthPage = () => {
 
           <div className="unit-container">{networth}</div>
         </div>
+        <p className="note">
+          {" "}
+          *Note: Sold units are not currently accessible in the api until they are added to your reimbursement 24 hours after being sold.
+          Selling units will make your networth in this calculator appear to have dropped. {" "}
+        </p>
       </article>
     </Layout>
   )

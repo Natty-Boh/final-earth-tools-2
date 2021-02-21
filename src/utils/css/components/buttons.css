@@ -87,6 +87,10 @@ button,
     box-shadow: inset 0 0 0 2px green;
 }
 
+.neutral {
+    box-shadow: inset 0 0 0 2px rgb(34, 34, 190);
+}
+
 
 input[type="submit"]:hover,
 input[type="reset"]:hover,
