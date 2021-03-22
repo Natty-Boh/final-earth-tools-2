@@ -83,7 +83,7 @@ const BuildCalculator = ({ ratios, units, team }) => {
           onSubmit={event => {
             event.preventDefault()
             if (selection) {
-              const numFunds = parseInt(funds.replaceAll(",", ""))
+              const numFunds = parseInt(funds.replace(/,/g, ""))
 
               setFetching(true)
               setBuildAndFetchTroops(selection, numFunds).finally(() =>
@@ -113,7 +113,7 @@ const BuildCalculator = ({ ratios, units, team }) => {
           onChange={event => {
             let rawFunds = event.target.value
             rawFunds = rawFunds.match(/\s*\$?\s*([0-9,.]+[kmb]?)\s*/)?.[1] ?? ""
-            rawFunds = rawFunds.replaceAll(",", "")
+            rawFunds = rawFunds.replace(/,/g, "")
             if (rawFunds.slice(-1) === "k") {
               rawFunds = parseInt(parseFloat(rawFunds.slice(0, -1) * 1000))
             } else if (rawFunds.slice(-1) === "m") {
