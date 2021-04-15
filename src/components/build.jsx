@@ -23,7 +23,7 @@ const BuildCalculator = ({ ratios, units, team }) => {
         checked={name === selection}
         onChange={() => setSelection(name)}
       />
-      <LightTooltip title={tooltip} placement="left" enterTouchDelay={10}>
+      <LightTooltip title={tooltip} placement="left" enterTouchDelay={0}>
       <label htmlFor={name}>{label}</label>
       </LightTooltip>
 
