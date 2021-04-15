@@ -105,7 +105,7 @@ const commonRatios = {
     tooltip: "Primarily for fighting other infantry. A balance of high infantry damage and modest life. Very limited defense against choppers.",
   },
   ainf: {
-    label: "Assault Infantry",
+    label: "Assport (Infantry)",
     composition: {
       assault: 3,
       support: 1,
@@ -150,7 +150,7 @@ export const axisRatios = {
     tooltip: "For fighting other tanks and decimating jeeps. Highest life tank build, at cost of slightly less damage.",
   },
   t98: {
-    label: "Type 98 (Tanks  Anti-Tank)",
+    label: "Type 98 (Tanks - Anti-Tank)",
     composition: {
       type98: 9,
       brem1: 1,
@@ -166,7 +166,7 @@ export const axisRatios = {
     tooltip: "Anti air. Good against chopper and planes. Weak to other tanks, but not as vulnerable to them as jeeps.",
   },
   bet98: {
-    label: "Black Eagles/Type 98s (Tanks - Anti-Tanks)",
+    label: "Black Eagles/Type 98s (Tanks - Anti-Tank)",
     composition: {
       blackEagle: 11,
       type98: 7,
@@ -196,7 +196,7 @@ export const alliesRatios = {
     tooltip: "Anti-infantry build. Does good damage against infantry but very vulnerable to tanks. Limited bombing capabilities.",
   },
   abrams: {
-    label: "Abrams (Tanks - Anti-Tanks)",
+    label: "Abrams (Tanks - Anti-Tank)",
     composition: {
       abram: 9,
       bison: 1,
@@ -204,7 +204,7 @@ export const alliesRatios = {
     tooltip: "For fighting other tanks and decimating jeeps. Highest life tank build, at cost of slightly less damage.",
   },
   amx: {
-    label: "AMXs (Tanks - Anti-Tanks)",
+    label: "AMXs (Tanks - Anti-Tank)",
     composition: {
       amx30: 9,
       bison: 1,
@@ -220,7 +220,7 @@ export const alliesRatios = {
     tooltip: "Anti air. Good against chopper and planes. Weak to other tanks, but not as vulnerable to them as jeeps.",
   },
   abramamx: {
-    label: "Abrams/AMXs (Tanks - Anti-Tanks)",
+    label: "Abrams/AMXs (Tanks - Anti-Tank)",
     composition: {
       abram: 11,
       amx30: 7,
