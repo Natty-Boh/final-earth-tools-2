@@ -1,6 +1,9 @@
 import * as React from "react"
 
 import { applyRatio } from "../utils/ratios"
+import Tooltip from '@material-ui/core/Tooltip';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
+
 
 const BuildCalculator = ({ ratios, units, team }) => {
   const [funds, setFunds] = React.useState("")
@@ -9,7 +12,7 @@ const BuildCalculator = ({ ratios, units, team }) => {
   const [key, setKey] = React.useState("")
   const [fetching, setFetching] = React.useState(false)
 
-  const RatioSelection = ({ name, label }) => (
+  const RatioSelection = ({ name, label, tooltip }) => (
     <>
       <input
         className={`${team}-radio`}
@@ -20,9 +23,21 @@ const BuildCalculator = ({ ratios, units, team }) => {
         checked={name === selection}
         onChange={() => setSelection(name)}
       />
+      <LightTooltip title={tooltip} placement="left">
       <label htmlFor={name}>{label}</label>
+      </LightTooltip>
+
     </>
   )
+
+  const LightTooltip = withStyles((theme) => ({
+    tooltip: {
+      backgroundColor: theme.palette.common.white,
+      color: 'rgba(0, 0, 0, 0.87)',
+      boxShadow: theme.shadows[1],
+      fontSize: 13,
+    },
+  }))(Tooltip);
 
   async function setBuildAndFetchTroops(selection, numFunds) {
     if (key !== "") {
@@ -99,6 +114,7 @@ const BuildCalculator = ({ ratios, units, team }) => {
               key={key}
               name={key}
               label={ratio.label}
+              tooltip={ratio.tooltip}
               disabled={fetching}
             />
           ))}
