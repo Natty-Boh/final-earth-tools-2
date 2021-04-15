@@ -105,7 +105,7 @@ const commonRatios = {
     tooltip: "Primarily for fighting other infantry. A balance of high infantry damage and modest life. Very limited defense against choppers.",
   },
   ainf: {
-    label: "Assault/Support Infantry",
+    label: "Assault Infantry",
     composition: {
       assault: 3,
       support: 1,
@@ -134,7 +134,7 @@ export const axisRatios = {
     tooltip: "A high-risk build that excels at attacking jeeps, tanks, and weakened infantry, but gets decimated if itself is attacked by infantry or choppers. Bad for big battles generally.",
   },
   vod: {
-    label: "Vodniks/MLR (Jeeps)",
+    label: "Vodniks/MLR (Jeeps - Anti-Inf)",
     composition: {
       vodnik: 3,
       a100mlr: 1,
@@ -142,7 +142,7 @@ export const axisRatios = {
     tooltip: "Anti-infantry build. Does good damage against infantry but very vulnerable to tanks. Limited bombing capabilities.",
   },
   blk: {
-    label: "Black Eagles (Tanks)",
+    label: "Black Eagles (Tanks - Anti-Tank)",
     composition: {
       blackEagle: 9,
       brem1: 1,
@@ -150,7 +150,7 @@ export const axisRatios = {
     tooltip: "For fighting other tanks and decimating jeeps. Highest life tank build, at cost of slightly less damage.",
   },
   t98: {
-    label: "Type 98 (Tanks)",
+    label: "Type 98 (Tanks  Anti-Tank)",
     composition: {
       type98: 9,
       brem1: 1,
@@ -158,7 +158,7 @@ export const axisRatios = {
     tooltip: "For fighting other tanks and decimating jeeps. Higest damage tank build, at cost of less life. ",
   },
   tungsbrem: {
-    label: "Tungs (Tanks)",
+    label: "Tungs (Tanks - Anti-Air)",
     composition: {
       tunguskaM1: 9,
       brem1: 1,
@@ -166,7 +166,7 @@ export const axisRatios = {
     tooltip: "Anti air. Good against chopper and planes. Weak to other tanks, but not as vulnerable to them as jeeps.",
   },
   bet98: {
-    label: "Black Eagles/Type 98s (Tanks)",
+    label: "Black Eagles/Type 98s (Tanks - Anti-Tanks)",
     composition: {
       blackEagle: 11,
       type98: 7,
@@ -188,7 +188,7 @@ export const alliesRatios = {
     tooltip: "A somewhat high-risk build for attacking jeeps and tanks. But are low life so are killed easily by other infantry. Bad for big battles generally.",
   },
   himar: {
-    label: "Humvees/Himars (Jeeps)",
+    label: "Humvees/Himars (Jeeps - Anti-Inf)",
     composition: {
       humvee: 3,
       himars: 1,
@@ -196,7 +196,7 @@ export const alliesRatios = {
     tooltip: "Anti-infantry build. Does good damage against infantry but very vulnerable to tanks. Limited bombing capabilities.",
   },
   abrams: {
-    label: "Abrams (Tanks)",
+    label: "Abrams (Tanks - Anti-Tanks)",
     composition: {
       abram: 9,
       bison: 1,
@@ -204,7 +204,7 @@ export const alliesRatios = {
     tooltip: "For fighting other tanks and decimating jeeps. Highest life tank build, at cost of slightly less damage.",
   },
   amx: {
-    label: "AMXs (Tanks)",
+    label: "AMXs (Tanks - Anti-Tanks)",
     composition: {
       amx30: 9,
       bison: 1,
@@ -212,7 +212,7 @@ export const alliesRatios = {
     tooltip: "For fighting other tanks and decimating jeeps. Higest damage tank build, at cost of less life.",
   },
   bradleys: {
-    label: "Bradleys (Tanks)",
+    label: "Bradleys (Tanks - Anti-Air)",
     composition: {
       bradley: 9,
       bison: 1,
@@ -220,7 +220,7 @@ export const alliesRatios = {
     tooltip: "Anti air. Good against chopper and planes. Weak to other tanks, but not as vulnerable to them as jeeps.",
   },
   abramamx: {
-    label: "Abrams/AMXs (Tanks)",
+    label: "Abrams/AMXs (Tanks - Anti-Tanks)",
     composition: {
       abram: 11,
       amx30: 7,
