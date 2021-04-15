@@ -105,7 +105,7 @@ const commonRatios = {
     tooltip: "Primarily for fighting other infantry. A balance of high infantry damage and modest life. Very limited defense against choppers.",
   },
   ainf: {
-    label: "Assport (Infantry)",
+    label: "Assports (Infantry)",
     composition: {
       assault: 3,
       support: 1,
