@@ -163,7 +163,7 @@ export const axisRatios = {
       tunguskaM1: 9,
       brem1: 1,
     },
-    tooltip: "Anti air. Good agaist chopper and planes. Weak to other tanks, but not as vulnerable to them as jeeps.",
+    tooltip: "Anti air. Good against chopper and planes. Weak to other tanks, but not as vulnerable to them as jeeps.",
   },
   bet98: {
     label: "Black Eagles/Type 98s (Tanks)",
@@ -217,7 +217,7 @@ export const alliesRatios = {
       bradley: 9,
       bison: 1,
     },
-    tooltip: "Anti air. Good agaist chopper and planes. Weak to other tanks, but not as vulnerable to them as jeeps.",
+    tooltip: "Anti air. Good against chopper and planes. Weak to other tanks, but not as vulnerable to them as jeeps.",
   },
   abramamx: {
     label: "Abrams/AMXs (Tanks)",
