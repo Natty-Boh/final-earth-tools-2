@@ -147,6 +147,19 @@ input[type="radio"].allies-radio:checked + label:before {
   color: black;
   content: "✓";
 }
+input[type="checkbox"].networth-check:checked + label:before{
+  background: blue;
+  border-color: grey;
+  color: black;
+  content: "✓";
+}
+
+input[type="checkbox"].networth-check:not(:checked) + label:before {
+  border-color: grey;
+  color: black;
+  content: "";
+}
+
 
 input[type="checkbox"]:focus + label:before,
 input[type="radio"]:focus + label:before {
