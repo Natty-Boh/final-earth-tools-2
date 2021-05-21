@@ -1,10 +1,15 @@
 import React from "react"
 import { Link } from "gatsby"
+import Helmet from "react-helmet"
+
 
 const Layout = props => {
   const { title, children } = props
   return (
     <div className="site-wrapper">
+    <Helmet>
+           <title>Final Earth Tools</title>
+       </Helmet>
       <header className="site-head">
         <div className="site-head-container">
           <nav id="swup" className="site-head-left">
