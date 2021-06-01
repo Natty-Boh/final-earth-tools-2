@@ -78,16 +78,17 @@ const NetworthPage = () => {
   }
 
   function checkForSoldUnits(arr) {
+    const now = Date.now()/1000;
     const amountSold = arr
-      .filter(entry => entry.type === "SELL_UNITS")
+      .filter(entry => entry.type === "SELL_UNITS" && entry.time > now)
       .reduce((acc, cur) => acc + cur.amount, 0)
     return amountSold
   }
 
   function getSoldInfo(arr) {
+    const now = Date.now()/1000;
     let string = ""
-    arr
-      .filter(entry => entry.type === "SELL_UNITS")
+    arr.filter(entry => entry.type === "SELL_UNITS"  && entry.time > now)
       .map(
         e =>
           (string += "$" + numberWithCommas(e.amount) + "        " + new Date(e.time * 1000).toUTCString() + "\n")
