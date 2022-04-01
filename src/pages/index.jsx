@@ -8,9 +8,10 @@ import "../utils/css/screen.css"
 const Index = () => {
   return (
     <Layout title="Final Earth Tools">
-      <header className="page-head">
+      <article className="page-head">
+        <p>Final Earth Tools is a collection of player created calculators, tools and resources for the browser war game, <a href="https://www.finalearth.com/">Final Earth</a>.</p>
         <h2 className="page-head-title">Build Calculators</h2>
-        <br />
+        <br/>
         <p>Select your team:</p>
         <ul className="actions post-content">
           <li>
@@ -27,9 +28,9 @@ const Index = () => {
         <h2 className="page-head-sub-title">Other Calculators</h2>
         <br />
           <a href="/networth" className="button neutral">
-            Networth 
+            Networth
           </a>
-      </header>
+      </article>
     </Layout>
   )
 }
