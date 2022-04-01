@@ -1,5 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
+import Helmet from "react-helmet"
+
 
 const Layout = props => {
   const { title, children } = props

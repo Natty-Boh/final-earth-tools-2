@@ -10,6 +10,7 @@ const NetworthPage = () => {
   const [key, setKey] = React.useState("")
   const [networth, setNetworth] = React.useState("")
   const [fetching, setFetching] = React.useState(false)
+  const [sold, setSold] = React.useState(false)
 
   async function calculateNetworth() {
     try {
@@ -37,8 +38,26 @@ const NetworthPage = () => {
           .reduce((a, b) => a + b, 0)
 
         const funds = userJson.data.funds
-        const reimb = userJson.data.reimbursement.amount
-        setNetworth(numberWithCommas(unitNet + funds + reimb))
+        let reimb = userJson.data.reimbursement.amount
+        let soldAmt = ""
+        if (sold) {
+          let result
+          result = checkForSoldUnits(
+            userJson.data.reimbursement.fullInformation
+          )
+          if (result) {
+            soldAmt =
+              "Sold units: \n" +
+              getSoldInfo(userJson.data.reimbursement.fullInformation)
+          }
+          reimb = reimb + result
+        }
+        setNetworth(
+          " Networth: $" +
+            numberWithCommas(unitNet + funds + reimb) +
+            " \n" +
+            soldAmt
+        )
       } else {
         setNetworth(
           `Something went wrong! The API returned an error: ${unitsJson.reason}`
@@ -53,9 +72,32 @@ const NetworthPage = () => {
 
   function numberWithCommas(x) {
     if (x !== "") {
-      return " Networth: $" + x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     }
     return ""
+  }
+
+  function checkForSoldUnits(arr) {
+    const now = Date.now()/1000;
+    const amountSold = arr
+      .filter(entry => entry.type === "SELL_UNITS" && entry.time > now)
+      .reduce((acc, cur) => acc + cur.amount, 0)
+    return amountSold
+  }
+
+  function getSoldInfo(arr) {
+    const now = Date.now()/1000;
+    let string = ""
+    arr.filter(entry => entry.type === "SELL_UNITS"  && entry.time > now)
+      .map(
+        e =>
+          (string += "$" + numberWithCommas(e.amount) + "        " + new Date(e.time * 1000).toUTCString() + "\n")
+      )
+    return string
+  }
+
+  function handleChange() {
+    setSold(!sold)
   }
 
   return (
@@ -91,6 +133,15 @@ const NetworthPage = () => {
                 setKey(event.target.value)
               }}
             />
+            <input
+              name="sold"
+              type="checkbox"
+              id="sold"
+              className="networth-check"
+              checked={sold}
+              onChange={handleChange}
+            />
+            <label htmlFor="sold">Include sold units</label>
           </form>
           <button
             className={`button neutral`}
@@ -101,12 +152,16 @@ const NetworthPage = () => {
             Submit
           </button>
 
-          <div className="unit-container">{networth}</div>
+          <div className="unit-container">
+            {networth.split("\n").map(str => (
+              <p key={str}>{str.replace(/ /g, "\u00a0")}</p>
+            ))}
+          </div>
         </div>
         <p className="note">
           {" "}
-          *Note: Sold units are not currently accessible in the api until they are added to your reimbursement 24 hours after being sold.
-          Selling units will make your networth in this calculator appear to have dropped. {" "}
+          *Note: Sold units are added to your reimbursement 24 hours after being
+          sold.{" "}
         </p>
       </article>
     </Layout>
