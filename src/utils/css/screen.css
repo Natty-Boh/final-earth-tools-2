@@ -834,6 +834,10 @@ body {
   padding-top: 1vw;
 }
 
+.tool-desc {
+  font-size: 1.4rem;
+}
+
 .unit-container {
   margin-top: 15px;
 }
