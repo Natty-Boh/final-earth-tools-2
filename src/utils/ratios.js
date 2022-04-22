@@ -15,6 +15,10 @@ const commonUnits = {
     cost: 200000,
     label: "Anti Tank",
   },
+  specOps: {
+    cost: 750000,
+    label: "Spec Op",
+  },
 }
 
 export const axisUnits = {
@@ -51,6 +55,14 @@ export const axisUnits = {
     cost: 8000000,
     label: "Black Eagle",
   },
+  hinds: {
+    cost: 17500000,
+    label: "Hind",
+  },
+  fulcs: {
+    cost: 30000000,
+    label: "MiG-29 Fulcrum",
+  },
 }
 
 export const alliesUnits = {
@@ -83,6 +95,14 @@ export const alliesUnits = {
     cost: 6200000,
     label: "M1A2 Abram",
   },
+  apaches: {
+    cost: 19000000,
+    label: "Apache",
+  },
+  eagles: {
+    cost: 32000000,
+    label: "F-15 Eagle",
+  },
 }
 
 const commonRatios = {
@@ -93,7 +113,8 @@ const commonRatios = {
       assault: 4,
       medic: 1,
     },
-    tooltip: "Primarily for fighting other infantry. A balance of high life and decent infantry damage. Decent against choppers.",
+    tooltip:
+      "Primarily for fighting other infantry. A balance of high life and decent infantry damage. Decent against choppers.",
   },
   ahinf: {
     label: "Assault Heavy Infantry",
@@ -102,7 +123,8 @@ const commonRatios = {
       assault: 11,
       medic: 1,
     },
-    tooltip: "Primarily for fighting other infantry. A balance of high infantry damage and modest life. Very limited defense against choppers.",
+    tooltip:
+      "Primarily for fighting other infantry. A balance of high infantry damage and modest life. Very limited defense against choppers.",
   },
   ainf: {
     label: "Assports (Infantry)",
@@ -110,7 +132,8 @@ const commonRatios = {
       assault: 3,
       support: 1,
     },
-    tooltip: "Primarily for fighting other infantry. Maximum damage against infantry. Supports provide cover to reduce losses in place of medics. Very limited defense against chopper" ,
+    tooltip:
+      "Primarily for fighting other infantry. Maximum damage against infantry. Supports provide cover to reduce losses in place of medics. Very limited defense against chopper",
   },
   sinf: {
     label: "Pure Support Infantry",
@@ -118,9 +141,9 @@ const commonRatios = {
       support: 15,
       medic: 1,
     },
-    tooltip: "Primarily for fighting other infantry. A maximum life build that still does modest infantry damage. Can be very effective against choppers.",
+    tooltip:
+      "Primarily for fighting other infantry. A maximum life build that still does modest infantry damage. Can be very effective against choppers.",
   },
-
 }
 
 export const axisRatios = {
@@ -131,7 +154,8 @@ export const axisRatios = {
       rebel: 4,
       suicide: 1,
     },
-    tooltip: "A high-risk build that excels at attacking jeeps, tanks, and weakened infantry, but gets decimated if itself is attacked by infantry or choppers. Bad for big battles generally.",
+    tooltip:
+      "A high-risk build that excels at attacking jeeps, tanks, and weakened infantry, but gets decimated if itself is attacked by infantry or choppers. Bad for big battles generally.",
   },
   vod: {
     label: "Vodniks/MLR (Jeeps - Anti-Inf)",
@@ -139,7 +163,8 @@ export const axisRatios = {
       vodnik: 3,
       a100mlr: 1,
     },
-    tooltip: "Anti-infantry build. Does good damage against infantry but very vulnerable to tanks. Limited bombing capabilities.",
+    tooltip:
+      "Anti-infantry build. Does good damage against infantry but very vulnerable to tanks. Limited bombing capabilities.",
   },
   blk: {
     label: "Black Eagles (Tanks - Anti-Tank)",
@@ -147,7 +172,8 @@ export const axisRatios = {
       blackEagle: 9,
       brem1: 1,
     },
-    tooltip: "For fighting other tanks and decimating jeeps. Highest life tank build, at cost of slightly less damage.",
+    tooltip:
+      "For fighting other tanks and decimating jeeps. Highest life tank build, at cost of slightly less damage.",
   },
   t98: {
     label: "Type 98 (Tanks - Anti-Tank)",
@@ -155,7 +181,8 @@ export const axisRatios = {
       type98: 9,
       brem1: 1,
     },
-    tooltip: "For fighting other tanks and decimating jeeps. Higest damage tank build, at cost of less life. ",
+    tooltip:
+      "For fighting other tanks and decimating jeeps. Higest damage tank build, at cost of less life. ",
   },
   tungsbrem: {
     label: "Tungs (Tanks - Anti-Air)",
@@ -163,7 +190,8 @@ export const axisRatios = {
       tunguskaM1: 9,
       brem1: 1,
     },
-    tooltip: "Anti air. Good against chopper and planes. Weak to other tanks, but not as vulnerable to them as jeeps.",
+    tooltip:
+      "Anti air. Good against chopper and planes. Weak to other tanks, but not as vulnerable to them as jeeps.",
   },
   bet98: {
     label: "Black Eagles/Type 98s (Tanks - Anti-Tank)",
@@ -172,7 +200,8 @@ export const axisRatios = {
       type98: 7,
       brem1: 2,
     },
-    tooltip: "For fighting other tanks and decimating jeeps. Good mix of high damage and high life.",
+    tooltip:
+      "For fighting other tanks and decimating jeeps. Good mix of high damage and high life.",
   },
 }
 
@@ -185,7 +214,8 @@ export const alliesRatios = {
       support: 4,
       at: 11,
     },
-    tooltip: "A somewhat high-risk build for attacking jeeps and tanks. But are low life so are killed easily by other infantry. Bad for big battles generally.",
+    tooltip:
+      "A somewhat high-risk build for attacking jeeps and tanks. But are low life so are killed easily by other infantry. Bad for big battles generally.",
   },
   himar: {
     label: "Humvees/Himars (Jeeps - Anti-Inf)",
@@ -193,7 +223,8 @@ export const alliesRatios = {
       humvee: 3,
       himars: 1,
     },
-    tooltip: "Anti-infantry build. Does good damage against infantry but very vulnerable to tanks. Limited bombing capabilities.",
+    tooltip:
+      "Anti-infantry build. Does good damage against infantry but very vulnerable to tanks. Limited bombing capabilities.",
   },
   abrams: {
     label: "Abrams (Tanks - Anti-Tank)",
@@ -201,7 +232,8 @@ export const alliesRatios = {
       abram: 9,
       bison: 1,
     },
-    tooltip: "For fighting other tanks and decimating jeeps. Highest life tank build, at cost of slightly less damage.",
+    tooltip:
+      "For fighting other tanks and decimating jeeps. Highest life tank build, at cost of slightly less damage.",
   },
   amx: {
     label: "AMXs (Tanks - Anti-Tank)",
@@ -209,7 +241,8 @@ export const alliesRatios = {
       amx30: 9,
       bison: 1,
     },
-    tooltip: "For fighting other tanks and decimating jeeps. Higest damage tank build, at cost of less life.",
+    tooltip:
+      "For fighting other tanks and decimating jeeps. Higest damage tank build, at cost of less life.",
   },
   bradleys: {
     label: "Bradleys (Tanks - Anti-Air)",
@@ -217,7 +250,8 @@ export const alliesRatios = {
       bradley: 9,
       bison: 1,
     },
-    tooltip: "Anti air. Good against chopper and planes. Weak to other tanks, but not as vulnerable to them as jeeps.",
+    tooltip:
+      "Anti air. Good against chopper and planes. Weak to other tanks, but not as vulnerable to them as jeeps.",
   },
   abramamx: {
     label: "Abrams/AMXs (Tanks - Anti-Tank)",
@@ -226,7 +260,8 @@ export const alliesRatios = {
       amx30: 7,
       bison: 2,
     },
-    tooltip: "For fighting other tanks and decimating jeeps. Good mix of high damage and high life.",
+    tooltip:
+      "For fighting other tanks and decimating jeeps. Good mix of high damage and high life.",
   },
 }
 
@@ -245,4 +280,52 @@ export function applyRatio(ratio, funds, units) {
       },
     ])
   )
+}
+
+export const singleUnitAxis = {
+  fulcs: {
+    label: "MiG-29 Fulcrums (Planes - Anti-Air)",
+    composition: {
+      fulcs: 1,
+    },
+    tooltip: "test",
+  },
+  hinds: {
+    label: "Hinds (Chopper - Anti-Inf)",
+    composition: {
+      hinds: 1,
+    },
+    tooltip: "test",
+  },
+  specOps: {
+    label: "Special Operations (Infantry - Bomber)",
+    composition: {
+      specOps: 1,
+    },
+    tooltip: "test",
+  },
+}
+
+export const singleUnitAllies = {
+  eagles: {
+    label: "F-15 Eagles (Planes - Anti-Air)",
+    composition: {
+      eagles: 1,
+    },
+    tooltip: "test",
+  },
+  apaches: {
+    label: "Apaches (Chopper - Anti-Inf)",
+    composition: {
+      apaches: 1,
+    },
+    tooltip: "test",
+  },
+  specOps: {
+    label: "Special Operations (Infantry - Bomber)",
+    composition: {
+      specOps: 1,
+    },
+    tooltip: "test",
+  },
 }

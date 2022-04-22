@@ -2,12 +2,14 @@ import React from "react"
 import { Link } from "gatsby"
 import Helmet from "react-helmet"
 
-
 const Layout = props => {
   const { title, children } = props
   const [toggleNav, setToggleNav] = React.useState(false)
   return (
     <div className={`site-wrapper ${toggleNav ? `site-head-open` : ``}`}>
+      <Helmet>
+        <title>Final Earth Tools</title>
+      </Helmet>
       <header className="site-head">
         <div className="site-head-container">
           <a
@@ -27,7 +29,7 @@ const Layout = props => {
             </div>
           </a>
           <nav id="swup" class="site-head-left">
-          <ul className="nav">
+            <ul className="nav">
               <li className="nav-elements">
                 <Link to={`/`}>Home</Link>
               </li>
@@ -50,8 +52,7 @@ const Layout = props => {
               {title}
             </Link>
           </div>
-          <div className="site-head-right">
-          </div>
+          <div className="site-head-right"></div>
         </div>
       </header>
       <main id="site-main" className="site-main">

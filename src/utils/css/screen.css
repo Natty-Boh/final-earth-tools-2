@@ -566,7 +566,7 @@ body {
 .page-content {
   max-width: 720px;
   margin: 0 auto;
-  padding: 4vw 0;
+  padding: 2vw 0;
 }
 
 .post-content-header {
@@ -851,5 +851,5 @@ body {
 }
 
 .hint {
-  color: var(--color-base)
+  color: var(--color-base);
 }
