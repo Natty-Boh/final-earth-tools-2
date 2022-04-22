@@ -3,7 +3,7 @@ import { graphql, StaticQuery } from "gatsby"
 
 import Layout from "../components/layout"
 
-import { alliesRatios, alliesUnits } from "../utils/ratios"
+import { alliesRatios, alliesUnits, singleUnitAllies } from "../utils/ratios"
 
 import BuildCalculator from "../components/build"
 
@@ -12,7 +12,12 @@ import "../utils/css/screen.css"
 
 const AlliesPage = () => (
   <Layout title="Allies Build Calculator">
-    <BuildCalculator team="allies" ratios={alliesRatios} units={alliesUnits} />
+    <BuildCalculator
+      team="allies"
+      ratios={alliesRatios}
+      units={alliesUnits}
+      singleUnit={singleUnitAllies}
+    />
   </Layout>
 )
 

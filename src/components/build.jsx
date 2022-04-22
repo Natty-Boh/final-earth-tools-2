@@ -1,16 +1,16 @@
 import * as React from "react"
 
 import { applyRatio } from "../utils/ratios"
-import Tooltip from '@material-ui/core/Tooltip';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+import Tooltip from "@material-ui/core/Tooltip"
+import { withStyles } from "@material-ui/core/styles"
 
-
-const BuildCalculator = ({ ratios, units, team }) => {
+const BuildCalculator = ({ ratios, units, team, singleUnit }) => {
   const [funds, setFunds] = React.useState("")
   const [selection, setSelection] = React.useState(undefined)
   const [build, setBuild] = React.useState()
   const [key, setKey] = React.useState("")
   const [fetching, setFetching] = React.useState(false)
+  const [isSingleUnit, setIsSingleUnit] = React.useState(false)
 
   const RatioSelection = ({ name, label, tooltip }) => (
     <>
@@ -24,20 +24,19 @@ const BuildCalculator = ({ ratios, units, team }) => {
         onChange={() => setSelection(name)}
       />
       <LightTooltip title={tooltip} placement="left" enterTouchDelay={1}>
-      <label htmlFor={name}>{label}</label>
+        <label htmlFor={name}>{label}</label>
       </LightTooltip>
-
     </>
   )
 
-  const LightTooltip = withStyles((theme) => ({
+  const LightTooltip = withStyles(theme => ({
     tooltip: {
       backgroundColor: theme.palette.common.white,
-      color: 'rgba(0, 0, 0, 0.87)',
+      color: "rgba(0, 0, 0, 0.87)",
       boxShadow: theme.shadows[1],
       fontSize: 13,
     },
-  }))(Tooltip);
+  }))(Tooltip)
 
   async function setBuildAndFetchTroops(selection, numFunds) {
     if (key !== "") {
@@ -60,29 +59,38 @@ const BuildCalculator = ({ ratios, units, team }) => {
           const unitNet = unitsJson.data
             .map(
               unit =>
-                allUnits.data.find(elem => elem.id === unit.id).cost * unit.quantity
+                allUnits.data.find(elem => elem.id === unit.id).cost *
+                unit.quantity
             )
             .reduce((a, b) => a + b, 0)
 
           const cash = userJson.data.funds
 
           numFunds = cash + unitNet
-          setBuild(applyRatio(ratios[selection].composition, numFunds, units))
-        }
-        else {
-          setBuild(
-            {error: `Something went wrong! The API returned an error: ${unitsJson.reason}`}
-          )
+          if (isSingleUnit) {
+            setBuild(
+              applyRatio(singleUnit[selection].composition, numFunds, units)
+            )
+          } else {
+            setBuild(applyRatio(ratios[selection].composition, numFunds, units))
+          }
+        } else {
+          setBuild({
+            error: `Something went wrong! The API returned an error: ${unitsJson.reason}`,
+          })
         }
       } catch (error) {
-        setBuild(
-          {error:`Something went wrong! Encountered an error when trying to contact the API: ${error.message}`}
-        )
+        setBuild({
+          error: `Something went wrong! Encountered an error when trying to contact the API: ${error.message}`,
+        })
       }
     } else {
-      setBuild(applyRatio(ratios[selection].composition, numFunds, units))
+      if (isSingleUnit) {
+        setBuild(applyRatio(singleUnit[selection].composition, numFunds, units))
+      } else {
+        setBuild(applyRatio(ratios[selection].composition, numFunds, units))
+      }
     }
-
   }
 
   return (
@@ -90,9 +98,27 @@ const BuildCalculator = ({ ratios, units, team }) => {
       <div className="post-content-body">
         <p className="calculator-intro">
           Enter your funds or api key below and select your build to see how
-          many units you can buy. (Please note single unit builds are not listed
-          below!){" "}
+          many units you can buy. (Please note single unit builds are included
+          just for reference.){" "}
         </p>
+        <div class="tab">
+          <button
+            className={`tablinks ${team} ${isSingleUnit ? "" : "selected"}`}
+            onClick={() => {
+              setIsSingleUnit(false)
+            }}
+          >
+            Multi Unit Builds
+          </button>
+          <button
+            className={`tablinks ${team} ${isSingleUnit ? "selected" : ""}`}
+            onClick={() => {
+              setIsSingleUnit(true)
+            }}
+          >
+            Single Unit Builds
+          </button>
+        </div>
         <form
           id="frm1"
           onSubmit={event => {
@@ -105,19 +131,21 @@ const BuildCalculator = ({ ratios, units, team }) => {
                 setFetching(false)
               )
             } else {
-              setBuild({error: "Error: no build selected"})
+              setBuild({ error: "Error: no build selected" })
             }
           }}
         >
-          {Object.entries(ratios).map(([key, ratio]) => (
-            <RatioSelection
-              key={key}
-              name={key}
-              label={ratio.label}
-              tooltip={ratio.tooltip}
-              disabled={fetching}
-            />
-          ))}
+          {Object.entries(isSingleUnit ? singleUnit : ratios).map(
+            ([key, ratio]) => (
+              <RatioSelection
+                key={key}
+                name={key}
+                label={ratio.label}
+                tooltip={ratio.tooltip}
+                disabled={fetching}
+              />
+            )
+          )}
         </form>
         <label htmlFor="funds">Funds:</label>
         <input

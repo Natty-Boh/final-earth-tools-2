@@ -3,7 +3,7 @@ import { graphql, StaticQuery } from "gatsby"
 
 import Layout from "../components/layout"
 
-import { axisRatios, axisUnits } from "../utils/ratios"
+import { axisRatios, axisUnits, singleUnitAxis } from "../utils/ratios"
 import BuildCalculator from "../components/build"
 
 import "../utils/normalize.css"
@@ -11,7 +11,12 @@ import "../utils/css/screen.css"
 
 const AxisPage = () => (
   <Layout title="Axis Build Calculator">
-    <BuildCalculator team="axis" ratios={axisRatios} units={axisUnits} />
+    <BuildCalculator
+      team="axis"
+      ratios={axisRatios}
+      units={axisUnits}
+      singleUnit={singleUnitAxis}
+    />
   </Layout>
 )
 
