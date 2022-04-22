@@ -288,21 +288,23 @@ export const singleUnitAxis = {
     composition: {
       fulcs: 1,
     },
-    tooltip: "test",
+    tooltip:
+      "For fighting other planes and decimating choppers. Vulnerable to other planes and anti-air tanks.",
   },
   hinds: {
     label: "Hinds (Chopper - Anti-Inf)",
     composition: {
       hinds: 1,
     },
-    tooltip: "test",
+    tooltip:
+      "For fighting infantry, with mediocre jeep and chopper damage. Vulnerable to planes, supports and anti-air tanks.",
   },
   specOps: {
     label: "Special Operations (Infantry - Bomber)",
     composition: {
       specOps: 1,
     },
-    tooltip: "test",
+    tooltip: "For bombing facilities. Not for fighting, will take huge losses.",
   },
 }
 
@@ -312,20 +314,22 @@ export const singleUnitAllies = {
     composition: {
       eagles: 1,
     },
-    tooltip: "test",
+    tooltip:
+      "For fighting other planes and decimating choppers. Vulnerable to other planes and anti-air tanks.",
   },
   apaches: {
     label: "Apaches (Chopper - Anti-Inf)",
     composition: {
       apaches: 1,
     },
-    tooltip: "test",
+    tooltip:
+      "For fighting infantry, with moderate jeep and chopper damage. Vulnerable to planes, supports and anti-air tanks.",
   },
   specOps: {
     label: "Special Operations (Infantry - Bomber)",
     composition: {
       specOps: 1,
     },
-    tooltip: "test",
+    tooltip: "For bombing facilities. Not for fighting, will take huge losses.",
   },
 }

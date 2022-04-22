@@ -99,7 +99,7 @@ const BuildCalculator = ({ ratios, units, team, singleUnit }) => {
         <p className="calculator-intro">
           Enter your funds or api key below and select your build to see how
           many units you can buy. (Please note single unit builds are included
-          just for referece.){" "}
+          just for reference.){" "}
         </p>
         <div class="tab">
           <button
