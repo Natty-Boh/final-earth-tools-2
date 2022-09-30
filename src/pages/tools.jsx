@@ -41,14 +41,15 @@ const Tools = () => {
         </div>
 
         <div>
-          <a href="https://discord.gg/6UsUTjwjME">
-            FE Discord Notification Bot
+          <a href="https://www.finalearth.com/discord">
+            SkynetV2 Discord Bot Notifications
           </a>{" "}
-          by Natty_Boh[29066]
+          by Natty_Boh[29066] and Pyrit[29406]
           <p className="tool-desc">
-            Join server and DM the bot to set up timer/troop movement
-            notifications. Bot will DM you the notifications. Good for users who
-            want notifications on mobile too.
+            Join the official Final Earth Discord server and DM the SkynetV2 bot
+            /start to set up timer/troop movement notifications. Bot will DM you
+            the notifications. Good for users who want notifications on mobile
+            too.
           </p>
         </div>
 
